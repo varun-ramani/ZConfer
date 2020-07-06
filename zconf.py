@@ -9,7 +9,7 @@ if len(sys.argv) == 2:
     if sys.argv[1] == "help":
         help_overview()
     else:
-        print("{} is an invalid command.".format(sys.argv))
+        print("{} is an invalid command.".format(sys.argv[1]))
 
 if len(sys.argv) == 3:
     if sys.argv[1] == "help":
