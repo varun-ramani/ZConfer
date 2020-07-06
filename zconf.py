@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import sys
 
 from help import overview as help_overview

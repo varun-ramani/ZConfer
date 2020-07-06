@@ -18,14 +18,26 @@ if [[ $found_error == true ]]; then
 fi
 
 printf "\033[1;33mAll requirements met. Install ZConf? (y/n) \033[0m"
-if read -q; then
-    echo
-
-    echo "Creating $HOME/.zconf if it doesn't already exist"
-    mkdir -p $HOME/.zconf
-
-    echo "Downloading zconf"
-    curl "https://raw.githubusercontent.com/varun-ramani/zconf/master/zconf.py" > $HOME/.zconf/zconf.py
-    echo "Downloading help module"
-    curl "https://raw.githubusercontent.com/varun-ramani/zconf/master/help.py" > $HOME/.zconf/help.py
+if ! read -q; then
+    exit
 fi
+
+echo
+echo "Creating $HOME/.zconf/ if it doesn't already exist"
+mkdir -p $HOME/.zconf
+
+echo "Downloading zconf"
+curl "https://raw.githubusercontent.com/varun-ramani/zconf/master/zconf.py" > $HOME/.zconf/zconf.py
+echo "Downloading help module"
+curl "https://raw.githubusercontent.com/varun-ramani/zconf/master/help.py" > $HOME/.zconf/help.py
+
+echo "Making $HOME/bin directory if it doesn't already exist"
+mkdir -p $HOME/bin
+
+echo "Linking zconf into $HOME/bin/zconf"
+ln -s $HOME/.zconf/zconf.py
+
+echo "Patching zconf for system installation of Python 3"
+command -v python3 > $HOME/bin/this_is_a_temp_zconf_file
+cat $HOME/bin/zconf >> $HOME/bin/this_is_a_temp_zconf_file
+cat $HOME/bin/this_is_a_temp_zconf_file > $HOME/bin/zconf
