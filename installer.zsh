@@ -35,9 +35,9 @@ echo "Making $HOME/bin directory if it doesn't already exist"
 mkdir -p $HOME/bin
 
 echo "Linking zconf into $HOME/bin/zconf"
-ln -s $HOME/.zconf/zconf.py
+ln -s $HOME/.zconf/zconf.py $HOME/bin/zconf
 
 echo "Patching zconf for system installation of Python 3"
-command -v python3 > $HOME/bin/this_is_a_temp_zconf_file
-cat $HOME/bin/zconf >> $HOME/bin/this_is_a_temp_zconf_file
-cat $HOME/bin/this_is_a_temp_zconf_file > $HOME/bin/zconf
+echo "#!$(command -v python3)" > $HOME/bin/this_is_a_temp_zconf_file && cat $HOME/bin/zconf >> $HOME/bin/this_is_a_temp_zconf_file && cat $HOME/bin/this_is_a_temp_zconf_file > $HOME/bin/zconf && rm $HOME/bin/this_is_a_temp_zconf_file
+
+chmod +x $HOME/bin/zconf

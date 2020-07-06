@@ -1,6 +1,16 @@
 import sys
 
-from help import overview as help_overview
+from help import help_overview, help_command
 
 if len(sys.argv) == 1:
-    print(help_overview)
+    help_overview()
+
+if len(sys.argv) == 2:
+    if sys.argv[1] == "help":
+        help_overview()
+    else:
+        print("{} is an invalid command.".format(sys.argv))
+
+if len(sys.argv) == 3:
+    if sys.argv[1] == "help":
+        help_command(sys.argv[2])
