@@ -4,11 +4,11 @@ ZConf by Varun Ramani
 usage: zconf <command> [<args>]
 
 Commands Available:
-    help            Prints this overview or a command's manpage
-    init            Post-installation step; initializes ZConf for first use
-    path            Provides path management functionality
-    plugin          Provides plugin management functionality
-    alias           Provides alias management functionality
+\thelp\t\tPrints this overview or a command's manpage
+\tinit\t\tPost-installation step; initializes ZConf for first use
+\tpath\t\tProvides path management functionality
+\tplugin\t\tProvides plugin management functionality
+\talias\t\tProvides alias management functionality
     """
     print(overview_string)
 
