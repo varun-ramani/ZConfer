@@ -26,10 +26,11 @@ echo
 echo "Creating $HOME/.zconf/ if it doesn't already exist"
 mkdir -p $HOME/.zconf
 
-echo "Downloading zconf"
-curl "https://raw.githubusercontent.com/varun-ramani/zconf/master/zconf.py" > $HOME/.zconf/zconf.py
-echo "Downloading help module"
-curl "https://raw.githubusercontent.com/varun-ramani/zconf/master/help.py" > $HOME/.zconf/help.py
+mods=('zconf' 'help' 'init' 'globals' 'utils' 'path')
+for module in $mods; do
+    echo "Downloading ${module} component"
+    curl "https://raw.githubusercontent.com/varun-ramani/zconf/master/${module}.py" -# > $HOME/.zconf/${module}.py
+done
 
 echo "Making $HOME/bin directory if it doesn't already exist"
 mkdir -p $HOME/bin
