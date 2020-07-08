@@ -82,4 +82,4 @@ def initialize():
     print("\tGenerating {} from {}".format(globals.modules.aliases, globals.jsondata.aliases))
     alias.generate()
 
-    print(colorprint("ZConfer has been fully installed. Restart ZSH to get started!", "bold_green"))
+    print(colorprint("ZConfer has been fully installed. Restart ZSH to get started!", "green"))
