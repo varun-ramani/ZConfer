@@ -1,3 +1,5 @@
+from utils import colorprint
+
 def overview():
     overview_string = """
 ZConf by Varun Ramani
@@ -23,7 +25,24 @@ that particular command will be returned.
         "init": """
 usage: zconf init
 
-Initializes ZConf by backing up the current .zshrc, generating all necessary components, and installing a new zsh configuration file.
+Initializes ZConfer by backing up the current .zshrc, generating all necessary components, and installing a new zsh configuration file.
         """,
+        "path": """
+usage: zconf path <subcommand> [<args>]
+
+Provides comprehensive path management functionality in ZConfer.
+
+{header}
+\t\tview\t\t\t\tDisplays all the ZConfer-managed path segments and their status
+\t\tset\t<segment> <value>\tSets a segment to a specified value
+\t\tget\t<segment>\t\tSets a segment to a specified value
+\t\trm\t<segment>\t\tRemoves a specified PATH segment
+\t\tload\t<segment>\t\tLoads the specified segment into the PATH
+\t\tunload\t<segment>\t\tUnloads the specified segment from the PATH
+        """
     }
+
+    for key in manpages:
+        manpages[key] = manpages[key].format(header=colorprint("Subcommands:\tName\tArguments\t\tDescription", "bold"))
+
     print(manpages.get(cmd, "'{}' is an invalid command.".format(cmd)))
