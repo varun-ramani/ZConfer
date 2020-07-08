@@ -4,17 +4,21 @@ import json
 from utils import read_file, write_file, colorprint
 from typing import Dict
 
+# This is being declared globally in order to prevent the data file being read from disk every single time it is required
 pathdict: Dict = {}
 
 def init_pathdict():
-    if pathdict == None:
+    global pathdict
+    if pathdict == {}:
         pathdict = json.loads(read_file(globals.jsondata.path))
 
 def dump_pathdict():
+    global pathdict
     write_file(globals.jsondata.path, json.dumps(pathdict))
 
 
 def check_segment_exists(seg):
+    global pathdict
     init_pathdict()
 
     if seg.upper() not in pathdict:
@@ -25,6 +29,7 @@ def check_segment_exists(seg):
 
 
 def generate():
+    global pathdict
     init_pathdict()
 
     pathstring = "export PATH=$PATH:"
@@ -35,6 +40,7 @@ def generate():
     write_file(globals.modules.path, pathstring[:-1])
 
 def set_segment(seg, value):
+    global pathdict
     init_pathdict()
 
     seg = seg.upper()
@@ -45,6 +51,7 @@ def set_segment(seg, value):
     generate()
 
 def get_segment(seg):
+    global pathdict
     init_pathdict()
 
     seg = seg.upper()
@@ -55,6 +62,7 @@ def get_segment(seg):
     print(pathdict[seg]['value'])
 
 def remove_segment(seg):
+    global pathdict
     init_pathdict()
 
     seg = seg.upper()
@@ -68,6 +76,7 @@ def remove_segment(seg):
     generate()
 
 def load_segment(seg):
+    global pathdict
     init_pathdict()
 
     seg = seg.upper()
@@ -81,6 +90,7 @@ def load_segment(seg):
     generate()
 
 def unload_segment(seg):
+    global pathdict
     init_pathdict()
 
     seg = seg.upper()
@@ -93,6 +103,7 @@ def unload_segment(seg):
     generate()
 
 def view():
+    global pathdict
     init_pathdict()
 
     if len(pathdict) == 0:
