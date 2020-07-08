@@ -33,12 +33,25 @@ usage: zconf path <subcommand> [<args>]
 Provides comprehensive path management functionality in ZConfer.
 
 {header}
-\t\tview\t\t\t\tDisplays all the ZConfer-managed path segments and their status
+\t\tview\t\t\t\tDisplays all the ZConfer-managed path segments and their statuses
 \t\tset\t<segment> <value>\tSets a segment to a specified value
-\t\tget\t<segment>\t\tSets a segment to a specified value
+\t\tget\t<segment>\t\tGets a segment's value
 \t\trm\t<segment>\t\tRemoves a specified PATH segment
 \t\tload\t<segment>\t\tLoads the specified segment into the PATH
 \t\tunload\t<segment>\t\tUnloads the specified segment from the PATH
+        """,
+        "alias": """
+usage: zconf alias <subcommand> [<args>]
+
+Provides comprehensive path management functionality in ZConfer.
+
+{header}
+\t\tview\t\t\t\tDisplays all the ZConfer-managed aliases and their statuses
+\t\tset\t<alias> <value>\tSets an alias to a specified value
+\t\tget\t<alias>\t\tGets the specified alias's value
+\t\trm\t<alias>\t\tRemoves a specified alias
+\t\tenable\t<alias>\t\tEnables the specified alias
+\t\tdisable\t<segment>\t\tDisables the specified alias
         """
     }
 
