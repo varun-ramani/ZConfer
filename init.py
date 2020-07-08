@@ -3,6 +3,7 @@ import os
 import globals
 import json
 import path
+import alias
 
 boiler_zshrc = """
 # Load zconf 
@@ -45,17 +46,40 @@ def initialize():
     print("\tCreating {}".format(globals.jsondata.path))
     write_file(
         globals.jsondata.path, 
-        json.dumps({}, indent=4)
+        json.dumps({
+            "BIN": {
+                "value": "{}/bin".format(globals.home),
+                "loaded": True
+            }
+        }, indent=4)
     )
     print("\tCreating {}".format(globals.jsondata.aliases))
     write_file(
         globals.jsondata.aliases, 
         json.dumps({
-            "gclone": "git clone",
-            "gpush": "git push",
-            "gpull": "git pull"
+            "gclone": {
+                "value": "git clone",
+                "enabled": True
+            },
+            "gpush": {
+                "value": "git push",
+                "enabled": True
+            },
+            "gpull": {
+                "value": "git pull",
+                "enabled": True
+            },
+            "gadd": {
+                "value": "git add .",
+                "enabled": True
+            }
         }, indent=4)
     )
+
     print("Module files:")
     print("\tGenerating {} from {}".format(globals.modules.path, globals.jsondata.path))
     path.generate()
+    print("\tGenerating {} from {}".format(globals.modules.aliases, globals.jsondata.aliases))
+    alias.generate()
+
+    print(colorprint("ZConfer has been fully installed. Restart ZSH to get started!", "bold_green"))

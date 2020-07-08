@@ -8,8 +8,8 @@ zshrc_backup = home + "/.zshrc.bak"
 
 class jsondata:
     path = zconf_home + "/path.json"
-    aliases = zconf_home + "/alises.json"
+    aliases = zconf_home + "/alias.json"
 
 class modules:
     path = zconf_home + "/path.zsh"
-    aliases = zconf_home + "/aliases.zsh"
+    aliases = zconf_home + "/alias.zsh"

@@ -6,6 +6,7 @@ import help
 import globals
 import init
 import path
+import alias
 import argparse
 
 def err_invalid_command(command):
@@ -36,6 +37,12 @@ def cli_main():
                 path.view()
             else:
                 err_invalid_command("path " + sys.argv[2])
+
+        elif sys.argv[1] == "alias":
+            if sys.argv[2] == "view":
+                alias.view()
+            else:
+                err_invalid_command("alias " + sys.argv[2])
         else:
             err_invalid_command(sys.argv[1])
 
@@ -52,9 +59,30 @@ def cli_main():
             else:
                 err_invalid_command("path " + sys.argv[2])
 
+        elif sys.argv[1] == "alias":
+            if sys.argv[2] == "rm":
+                alias.remove_alias(sys.argv[3])
+            elif sys.argv[2] == "enable":
+                alias.enable_alias(sys.argv[3])
+            elif sys.argv[2] == "disable":
+                alias.disable_alias(sys.argv[3])
+            elif sys.argv[2] == "get":
+                alias.get_alias(sys.argv[3])
+            else:
+                err_invalid_command("alias " + sys.argv[2])
+
+        else:
+            err_invalid_command(sys.argv[1])
+
+
     if len(sys.argv) == 5:
         if sys.argv[1] == "path":
             if sys.argv[2] == "set":
                 path.set_segment(sys.argv[3], sys.argv[4])
+        elif sys.argv[1] == "alias":
+            if sys.argv[2] == "set":
+                alias.set_alias(sys.argv[3], sys.argv[4])
+        else:
+            err_invalid_command(sys.argv[1])
 
 cli_main()
