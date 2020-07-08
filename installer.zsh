@@ -42,3 +42,7 @@ echo "Patching zconf for system installation of Python 3"
 echo "#!$(command -v python3)" > $HOME/bin/this_is_a_temp_zconf_file && cat $HOME/bin/zconf >> $HOME/bin/this_is_a_temp_zconf_file && cat $HOME/bin/this_is_a_temp_zconf_file > $HOME/bin/zconf && rm $HOME/bin/this_is_a_temp_zconf_file
 
 chmod +x $HOME/bin/zconf
+
+export PATH="$PATH:$HOME/bin"
+
+echo "\033[1;32mInstallation complete. Run zconf init now.\033[0m"
