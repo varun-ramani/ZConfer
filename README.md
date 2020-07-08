@@ -1,6 +1,6 @@
-# ZConf
+# ZConfer
 
-ZConf is a fast and lightweight configuration system for the Z Shell.
+ZConfer is a fast and lightweight configuration system for the Z Shell.
 * Sane Defaults
 * Plugin Installation and Management
 * PATH Management
