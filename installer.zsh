@@ -29,7 +29,7 @@ mkdir -p $HOME/.zconf
 mods=('zconf' 'help' 'init' 'globals' 'utils' 'path' 'alias')
 for module in $mods; do
     echo "Downloading ${module} component"
-    curl "https://raw.githubusercontent.com/varun-ramani/zconf/master/${module}.py" -# > $HOME/.zconf/${module}.py
+    curl "https://raw.githubusercontent.com/varun-ramani/zconfer/master/${module}.py" -# > $HOME/.zconf/${module}.py
 done
 
 echo "Making $HOME/bin directory if it doesn't already exist"
