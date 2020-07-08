@@ -110,6 +110,6 @@ def view():
         print(colorprint("No ZConf-created segments in PATH", "red"))
         return
 
-    print(colorprint("Segment\t\t\tValue\t\tLoaded", "bold"))
+    print(colorprint("{:20}{:15}{:15}".format("Segment", "Value", "Loaded"), "bold"))
     for seg in pathdict:
-        print("{}\t\t{}\t\t{}".format(seg, pathdict.get(seg)['value'], ("YES" if pathdict[seg]['loaded'] else "NO")))
+        print("{:20}{:15}{:15}".format(seg, pathdict.get(seg)['value'], ("YES" if pathdict[seg]['loaded'] else "NO")))
