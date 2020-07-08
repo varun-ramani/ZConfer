@@ -5,11 +5,11 @@ from utils import read_file, write_file, colorprint
 from typing import Dict
 
 # This is being declared globally in order to prevent the data file being read from disk every single time it is required
-pathdict: Dict = {}
+pathdict: Dict = {"please_dont_use_this_as_a_segment_it_is_required_by_zconfer": "i_know_its_a_hacky_solution_but_whatever"}
 
 def init_pathdict():
     global pathdict
-    if pathdict == {}:
+    if pathdict['please_dont_use_this_as_a_segment_it_is_required_by_zconfer'] == "i_know_its_a_hacky_solution_but_whatever":
         pathdict = json.loads(read_file(globals.jsondata.path))
 
 def dump_pathdict():
