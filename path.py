@@ -9,7 +9,7 @@ pathdict: Dict = {"please_dont_use_this_as_a_segment_it_is_required_by_zconfer":
 
 def init_pathdict():
     global pathdict
-    if pathdict.get('please_dont_use_this_as_a_segment_it_is_required_by_zconfer', 'already_init') == 'already_init':
+    if pathdict.get('please_dont_use_this_as_a_segment_it_is_required_by_zconfer', 'already_init') != 'already_init':
         pathdict = json.loads(read_file(globals.jsondata.path))
 
 def dump_pathdict():
