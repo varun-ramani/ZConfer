@@ -1,9 +1,11 @@
 from utils import colorprint, confirm, write_file
 import os
+import shutil
 import globals
 import json
 import path
 import alias
+import plugin
 
 boiler_zshrc = """
 # Load zconf 
@@ -18,6 +20,7 @@ boiler_zconf_main = """
 # ==> DON'T EDIT THIS FILE BY HAND <==
 source {0}/path.zsh
 source {0}/alias.zsh
+source {0}/plugin.zsh
 
 """.format(globals.zconf_home)
 
@@ -75,11 +78,24 @@ def initialize():
             }
         }, indent=4)
     )
+    print("\tCreating {}".format(globals.jsondata.plugins))
+    write_file(
+        globals.jsondata.plugins,
+        json.dumps({})
+    )
 
     print("Module files:")
     print("\tGenerating {} from {}".format(globals.modules.path, globals.jsondata.path))
     path.generate()
     print("\tGenerating {} from {}".format(globals.modules.aliases, globals.jsondata.aliases))
     alias.generate()
+    print("\tGenerating {} from {}".format(globals.modules.plugins, globals.jsondata.plugins))
+    plugin.generate()
+
+    if os.path.exists(globals.plugins_dir):
+        print("Erasing plugins directory")
+        shutil.rmtree(globals.plugins_dir)
+
+    os.mkdir(globals.plugins_dir)
 
     print(colorprint("ZConfer has been fully installed. Restart ZSH to get started!", "green"))

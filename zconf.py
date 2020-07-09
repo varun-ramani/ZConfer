@@ -8,6 +8,7 @@ import init
 import path
 import alias
 import argparse
+import plugin
 
 def err_invalid_command(command):
     print(colorprint("Command '{}' is either invalid is being used incorrectly.".format(command), "red"))
@@ -22,7 +23,7 @@ def cli_main():
 
     if len(sys.argv) == 2:
         if sys.argv[1] == "help":
-            print(colorprint("'help' requires exactly one parameter", "red"))
+            help.overview()
         elif sys.argv[1] == "init":
             init.initialize()
         else:
@@ -43,6 +44,11 @@ def cli_main():
                 alias.view()
             else:
                 err_invalid_command("alias " + sys.argv[2])
+        elif sys.argv[1] == "plugin":
+            if sys.argv[2] == "update":
+                plugin.update()
+            else:
+                err_invalid_command("plugin " + sys.argv[2])
         else:
             err_invalid_command(sys.argv[1])
 
@@ -71,10 +77,19 @@ def cli_main():
             else:
                 err_invalid_command("alias " + sys.argv[2])
 
+        elif sys.argv[1] == "plugin":
+            if sys.argv[2] == "list":
+                if sys.argv[3] == "all":
+                    plugin.list_all()
+            elif sys.argv[2] == "add":
+                plugin.add(sys.argv[3])
+            elif sys.argv[2] == "rm":
+                plugin.remove(sys.argv[3])
+            else:
+                err_invalid_command("plugin " + sys.argv[2])
         else:
             err_invalid_command(sys.argv[1])
-
-
+    
     if len(sys.argv) == 5:
         if sys.argv[1] == "path":
             if sys.argv[2] == "set":
