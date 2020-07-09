@@ -1,7 +1,8 @@
 {
     "plugins": {
         "almostontop": {
-            "repo": "https://github.com/Valiev/almostontop",
+            "type": "repository",
+            "source": "https://github.com/Valiev/almostontop",
             "entry": "almostontop.plugin.zsh",
             "description": "It clears previous command output every time before new command executed in shell. Insipred by alwaysontop plugin for bash."
         }
