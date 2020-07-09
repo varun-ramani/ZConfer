@@ -31,3 +31,14 @@ def read_file(path):
     with open(path, 'r') as file:
         toreturn = file.read()
         return toreturn
+
+def progress_bar(complete, total):
+    progressbar_string = "#".join('' for i in range(0, round(50 * complete / total)))
+    print("{0:.1f}% [{1:50}]".format((100 * complete / total), progressbar_string), end="\r")
+
+
+def download_progress_bar(block_num, block_size, total_size):
+    progress_bar(block_size * block_num, total_size)
+
+def break_to_size(string, size):
+    return [string[i:i+size] for i in range(0, len(string), size)]
