@@ -1,7 +1,6 @@
 import globals
 from utils import download_progress_bar, break_to_size, read_file, colorprint, write_file
 import time
-import pydoc
 from typing import Dict
 import json
 import textwrap
@@ -32,9 +31,9 @@ def init_dict():
 
 def update_repo():
     import urllib.request as req
-    print("Downloading latest repository...", end="")
+    print("Downloading latest repository...")
     req.urlretrieve('https://raw.githubusercontent.com/varun-ramani/zconfer/master/repo.json', globals.jsondata.repo)
-    print("done")
+    print(colorprint("Updated local repository!", "green"))
 
 def update():
     update_repo()
@@ -46,6 +45,7 @@ def list_all():
 
     list_text = []
 
+    print()
     list_text.append(colorprint("{:20}{:50}{:12}{:12}".format("Plugin", "Description", "Installed", "Loaded"), "bold"))
 
 
@@ -63,6 +63,68 @@ def list_all():
             list_text.append("{:20}{:50}{:12}{:12}".format("", description_arr[i], "", ""))
 
     print("\n".join(list_text))
+    print()
+
+def list_local():
+    global installed_dict
+
+    init_dict()
+
+    list_text = []
+
+    print()
+    if len(installed_dict) != 0:
+        list_text.append(colorprint("{:20}{:50}{:12}".format("Plugin", "Description", "Loaded"), "bold"))
+    else:
+        print(colorprint("You have no installed plugins!\n", "red"))
+        return
+
+
+    for key in plugins_dict:
+        plugin = plugins_dict[key]
+
+        loaded_text = "YES" if installed_dict[key]['loaded'] == True else "NO"
+
+        description_arr = textwrap.wrap(plugin['description'], 45)
+
+        list_text.append("{:20}{:50}{:12}".format(key, description_arr[0], loaded_text))
+
+        for i in range(1, len(description_arr)):
+            list_text.append("{:20}{:50}{:12}".format("", description_arr[i], ""))
+
+    print("\n".join(list_text))
+    print()
+
+def list_remote():
+    global installed_dict
+    global plugins_dict
+
+    init_dict()
+
+    list_text = []
+
+    print()
+    list_text.append(colorprint("{:20}{:50}".format("Plugin", "Description"), "bold"))
+
+    for key in plugins_dict:
+        plugin = plugins_dict[key]
+
+        if key in installed_dict:
+            continue
+
+        description_arr = textwrap.wrap(plugin['description'], 45)
+
+        list_text.append("{:20}{:50}".format(key, description_arr[0]))
+
+        for i in range(1, len(description_arr)):
+            list_text.append("{:20}{:50}".format("", description_arr[i]))
+
+    if len(list_text) == 1:
+        print(colorprint("You have already installed all available plugins.\n", "red"))
+        return 
+
+    print("\n".join(list_text))
+    print()
 
 def add(plugin):
     global plugins_dict 
@@ -90,7 +152,6 @@ def add(plugin):
         generate()
 
         print(colorprint(f"Successfully installed plugin '{plugin}'", "green"))
-
 
 def remove(plugin):
     global plugins_dict 

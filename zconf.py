@@ -11,7 +11,7 @@ import argparse
 import plugin
 
 def err_invalid_command(command):
-    print(colorprint("Command '{}' is either invalid is being used incorrectly.".format(command), "red"))
+    print(colorprint("Command '{}' is either invalid or is being used incorrectly.".format(command), "red"))
 
 def cli_main():
     if not os.path.exists(globals.zconf_home):
@@ -81,6 +81,12 @@ def cli_main():
             if sys.argv[2] == "list":
                 if sys.argv[3] == "all":
                     plugin.list_all()
+                elif sys.argv[3] == "local":
+                    plugin.list_local()
+                elif sys.argv[3] == "remote":
+                    plugin.list_remote()
+                else:
+                    err_invalid_command("plugin list " + sys.argv[3])
             elif sys.argv[2] == "add":
                 plugin.add(sys.argv[3])
             elif sys.argv[2] == "rm":
