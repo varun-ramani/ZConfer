@@ -1,0 +1,3 @@
+[submodule "zconfer_repo"]
+	path = zconfer_repo
+	url = https://github.com/varun-ramani/zconfer_repo
