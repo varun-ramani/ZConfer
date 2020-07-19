@@ -15,14 +15,6 @@ def generate():
     global installed_dict
     init_dict()
 
-
-
-    write_file(globals.modules.plugins, "\n".join([f"source {installed_dict[plugin]['entry']}" for plugin in installed_dict]))
-
-def generate():
-    global installed_dict
-    init_dict()
-
     plugins_string = ""
     for plugin in installed_dict:
         if installed_dict[plugin]['enabled']:
