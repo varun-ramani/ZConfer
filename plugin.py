@@ -64,11 +64,13 @@ def list_all():
         for i in range(1, len(description_arr)):
             list_text.append("{:20}{:50}{:12}{:12}".format("", description_arr[i], "", ""))
 
+        list_text.append("\n")
+
     print("\n".join(list_text))
-    print()
 
 def list_local():
     global installed_dict
+    global plugins_dict
 
     init_dict()
 
@@ -82,20 +84,21 @@ def list_local():
         return
 
 
-    for key in plugins_dict:
-        plugin = plugins_dict[key]
+    for key in installed_dict:
+        plugin = installed_dict[key]
 
-        loaded_text = "YES" if installed_dict[key]['loaded'] == True else "NO"
+        loaded_text = "YES" if plugin['loaded'] == True else "NO"
 
-        description_arr = textwrap.wrap(plugin['description'], 45)
+        description_arr = textwrap.wrap(plugins_dict[key]['description'], 45)
 
         list_text.append("{:20}{:50}{:12}".format(key, description_arr[0], loaded_text))
 
         for i in range(1, len(description_arr)):
             list_text.append("{:20}{:50}{:12}".format("", description_arr[i], ""))
 
+        list_text.append("\n")
+
     print("\n".join(list_text))
-    print()
 
 def list_remote():
     global installed_dict
@@ -121,12 +124,13 @@ def list_remote():
         for i in range(1, len(description_arr)):
             list_text.append("{:20}{:50}".format("", description_arr[i]))
 
+        list_text.append("\n")
+
     if len(list_text) == 1:
         print(colorprint("You have already installed all available plugins.\n", "red"))
         return 
 
     print("\n".join(list_text))
-    print()
 
 def add(plugin):
     global plugins_dict 
