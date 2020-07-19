@@ -7,11 +7,12 @@ zconf_main = zconf_home + "/managed_zshrc"
 zshrc_backup = home + "/.zshrc.bak"
 
 plugins_dir  = zconf_home + "/plugins"
+repo_dir = zconf_home + "/repo"
 
 class jsondata:
     path = zconf_home + "/path.json"
+    repo = repo_dir + "/repo.json"
     aliases = zconf_home + "/alias.json"
-    repo = zconf_home + "/repo.json"
     plugins = zconf_home + "/plugin.json"
 
 class modules:
