@@ -93,6 +93,10 @@ def cli_main():
                 plugin.add(sys.argv[3])
             elif sys.argv[2] == "rm":
                 plugin.remove(sys.argv[3])
+            elif sys.argv[2] == "enable":
+                plugin.enable(sys.argv[3])
+            elif sys.argv[2] == "disable":
+                plugin.disable(sys.argv[3])
             else:
                 err_invalid_command("plugin " + sys.argv[2])
         else:
