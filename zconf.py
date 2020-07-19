@@ -10,6 +10,8 @@ import alias
 import argparse
 import plugin
 
+os.environ['ZCONFER_PLUGINS_DIR'] = globals.plugins_dir
+
 def err_invalid_command(command):
     print(colorprint("Command '{}' is either invalid or is being used incorrectly.".format(command), "red"))
 
