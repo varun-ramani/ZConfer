@@ -26,11 +26,14 @@ echo
 echo "Creating $HOME/.zconf/ if it doesn't already exist"
 mkdir -p $HOME/.zconf
 
-mods=('zconf' 'help' 'init' 'globals' 'utils' 'path' 'alias')
+mods=('zconf' 'help' 'init' 'globals' 'utils' 'path' 'alias' 'plugin')
 for module in $mods; do
     echo "Downloading ${module} component"
     curl "https://raw.githubusercontent.com/varun-ramani/zconfer/master/${module}.py" -# > $HOME/.zconf/${module}.py
 done
+
+echo "Cloning ZConfer's plugin repository"
+git clone https://github.com/varun-ramani/zconfer_repo.git ~/.zconf/repo
 
 echo "Making $HOME/bin directory if it doesn't already exist"
 mkdir -p $HOME/bin
