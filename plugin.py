@@ -40,7 +40,7 @@ def update_repo():
 def update():
     update_repo()
 
-def list_all():
+def view_all():
     global plugins_dict
     global installed_dict
     init_dict()
@@ -68,7 +68,7 @@ def list_all():
 
     print("\n".join(list_text))
 
-def list_local():
+def view_local():
     global installed_dict
     global plugins_dict
 
@@ -100,7 +100,7 @@ def list_local():
 
     print("\n".join(list_text))
 
-def list_remote():
+def view_remote():
     global installed_dict
     global plugins_dict
 

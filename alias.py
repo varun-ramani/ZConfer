@@ -39,7 +39,7 @@ def generate():
 
     write_file(globals.modules.aliases, aliases_string)
 
-def set_alias(alias, value):
+def set(alias, value):
     global aliasdict
     init_aliasdict()
 
@@ -49,7 +49,7 @@ def set_alias(alias, value):
     dump_aliasdict()
     generate()
 
-def get_alias(alias):
+def get(alias):
     global aliasdict
     init_aliasdict()
 
@@ -58,7 +58,7 @@ def get_alias(alias):
     
     print(aliasdict[alias]['value'])
 
-def remove_alias(alias):
+def remove(alias):
     global aliasdict
     init_aliasdict()
 
@@ -70,7 +70,7 @@ def remove_alias(alias):
     dump_aliasdict()
     generate()
 
-def enable_alias(alias):
+def enable(alias):
     global aliasdict
     init_aliasdict()
 
@@ -82,7 +82,7 @@ def enable_alias(alias):
     dump_aliasdict()
     generate()
 
-def disable_alias(alias):
+def disable(alias):
     global aliasdict
     init_aliasdict()
 

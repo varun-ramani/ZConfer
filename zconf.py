@@ -69,26 +69,26 @@ def cli_main():
 
         elif sys.argv[1] == "alias":
             if sys.argv[2] == "rm":
-                alias.remove_alias(sys.argv[3])
+                alias.remove(sys.argv[3])
             elif sys.argv[2] == "enable":
-                alias.enable_alias(sys.argv[3])
+                alias.enable(sys.argv[3])
             elif sys.argv[2] == "disable":
-                alias.disable_alias(sys.argv[3])
+                alias.disable(sys.argv[3])
             elif sys.argv[2] == "get":
-                alias.get_alias(sys.argv[3])
+                alias.get(sys.argv[3])
             else:
                 err_invalid_command("alias " + sys.argv[2])
 
         elif sys.argv[1] == "plugin":
-            if sys.argv[2] == "list":
+            if sys.argv[2] == "view":
                 if sys.argv[3] == "all":
-                    plugin.list_all()
+                    plugin.view_all()
                 elif sys.argv[3] == "local":
-                    plugin.list_local()
+                    plugin.view_local()
                 elif sys.argv[3] == "remote":
-                    plugin.list_remote()
+                    plugin.view_remote()
                 else:
-                    err_invalid_command("plugin list " + sys.argv[3])
+                    err_invalid_command("plugin view " + sys.argv[3])
             elif sys.argv[2] == "add":
                 plugin.add(sys.argv[3])
             elif sys.argv[2] == "rm":
@@ -104,7 +104,7 @@ def cli_main():
                 path.set_segment(sys.argv[3], sys.argv[4])
         elif sys.argv[1] == "alias":
             if sys.argv[2] == "set":
-                alias.set_alias(sys.argv[3], sys.argv[4])
+                alias.set(sys.argv[3], sys.argv[4])
         else:
             err_invalid_command(sys.argv[1])
 
