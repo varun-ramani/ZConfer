@@ -10,6 +10,7 @@ import os
 plugins_dict : Dict = {"this_is_the_default_dictionary": ""}
 installed_dict: Dict = {"this_is_the_default_dictionary": ""}
 
+
 def generate():
     global plugins_dict
     global installed_dict
@@ -18,21 +19,22 @@ def generate():
     write_file(globals.modules.plugins, "\n".join([f"source {installed_dict[plugin]['entry']}" for plugin in installed_dict]))
 
 def dump_dict():
-    write_file(globals.jsondata.plugins, json.dumps(installed_dict))
+    write_file(globals.jsondata.plugins, json.dumps(installed_dict, sort_keys=True))
 
 def init_dict():
     global plugins_dict
     global installed_dict
     if plugins_dict.get('this_is_the_default_dictionary', 'already_init') != 'already_init':
         plugins_dict = json.loads(read_file(globals.jsondata.repo))['plugins']
+        plugins_dict = {key: plugins_dict[key] for key in sorted(plugins_dict)}
 
     if installed_dict.get('this_is_the_default_dictionary', 'already_init') != 'already_init':
         installed_dict = json.loads(read_file(globals.jsondata.plugins))
+        installed_dict = {key: installed_dict[key] for key in sorted(installed_dict)}
 
 def update_repo():
     import urllib.request as req
-    print("Downloading latest repository...")
-    req.urlretrieve('https://raw.githubusercontent.com/varun-ramani/zconfer/master/repo.json', globals.jsondata.repo)
+    os.system(f'cd {globals.repo_dir} && git pull')
     print(colorprint("Updated local repository!", "green"))
 
 def update():
@@ -140,18 +142,18 @@ def add(plugin):
         print(colorprint(f"Plugin '{plugin}' was not found!", "red"))
         return
 
-    if plugins_dict[plugin]['type'] == "repository":
-        os.system(f"git clone {plugins_dict[plugin]['source']} {globals.plugins_dir}/{plugin}")
+    if os.system(f"zsh {globals.repo_dir}/plugins/{plugin}/add.zsh") != 0:
+        print(colorprint(f"Installation of plugin '{plugin}' was unsuccessful.", "red"))
 
-        installed_dict[plugin] = {
-            "loaded": True,
-            "entry": f"{globals.plugins_dir}/{plugin}/{plugins_dict[plugin]['entry']}"
-        }
+    installed_dict[plugin] = {
+        "loaded": True,
+        "entry": f"{globals.plugins_dir}/{plugin}/{plugins_dict[plugin]['entry']}"
+    }
 
-        dump_dict()
-        generate()
+    dump_dict()
+    generate()
 
-        print(colorprint(f"Successfully installed plugin '{plugin}'", "green"))
+    print(colorprint(f"Successfully installed plugin '{plugin}'", "green"))
 
 def remove(plugin):
     global plugins_dict 
@@ -163,7 +165,8 @@ def remove(plugin):
         print(colorprint(f"Plugin '{plugin}' is not installed!", "red"))
         return
 
-    os.system(f"rm -rf {globals.plugins_dir}/{plugin}")
+    if os.system(f"zsh {globals.repo_dir}/plugins/{plugin}/remove.zsh") != 0:
+        print(colorprint(f"Removal of plugin '{plugin}' was unsuccessful.", "red"))
 
     del installed_dict[plugin]
 
