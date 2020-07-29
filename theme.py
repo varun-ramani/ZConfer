@@ -51,49 +51,17 @@ def view_all():
     print()
     list_text.append(f"Selected theme: {installed_dict['enabled']}")
     list_text.append("\n")
-    list_text.append(colorprint("{:20}{:50}{:12}{:12}".format("Theme", "Description", "Installed"), "bold"))
+    list_text.append(colorprint("{:20}{:50}{:12}".format("Theme", "Description", "Installed"), "bold"))
 
 
     for key in repo_dict:
         theme = repo_dict[key]
 
-        installed_text = "YES" if key in installed_dict else "NO"
+        installed_text = "YES" if key in installed_dict['installed'] else "NO"
 
         description_arr = textwrap.wrap(theme['description'], 45)
 
         list_text.append("{:20}{:50}{:12}".format(key, description_arr[0], installed_text))
-
-        for i in range(1, len(description_arr)):
-            list_text.append("{:20}{:50}{:12}".format("", description_arr[i], "", ""))
-
-        list_text.append("\n")
-
-    print("\n".join(list_text))
-
-def view_local():
-    global installed_dict
-    global repo_dict
-
-    init_dict()
-
-    list_text = []
-
-    print()
-    if len(installed_dict) != 0:
-        list_text.append(colorprint("{:20}{:50}{:12}".format("Theme", "Description", "Enabled"), "bold"))
-    else:
-        print(colorprint("You have no installed themes!\n", "red"))
-        return
-
-
-    for key in installed_dict:
-        theme = installed_dict[key]
-
-        enabled_text = "YES" if theme['enabled'] == True else "NO"
-
-        description_arr = textwrap.wrap(repo_dict[key]['description'], 45)
-
-        list_text.append("{:20}{:50}{:12}".format(key, description_arr[0], enabled_text))
 
         for i in range(1, len(description_arr)):
             list_text.append("{:20}{:50}{:12}".format("", description_arr[i], ""))
@@ -101,6 +69,37 @@ def view_local():
         list_text.append("\n")
 
     print("\n".join(list_text))
+
+def view_local():
+    global repo_dict
+    global installed_dict
+    init_dict()
+
+    list_text = []
+
+    print()
+    list_text.append(f"Selected theme: {installed_dict['enabled']}")
+    list_text.append("\n")
+    list_text.append(colorprint("{:20}{:50}".format("Theme", "Description"), "bold"))
+
+
+    for key in installed_dict['installed']:
+        if key in repo_dict:
+            theme = repo_dict[key]
+        else:
+            continue
+
+        description_arr = textwrap.wrap(theme['description'], 45)
+
+        list_text.append("{:20}{:50}".format(key, description_arr[0]))
+
+        for i in range(1, len(description_arr)):
+            list_text.append("{:20}{:50}".format("", description_arr[i]))
+
+        list_text.append("\n")
+
+    print("\n".join(list_text))
+
 
 def view_remote():
     global installed_dict
@@ -116,7 +115,7 @@ def view_remote():
     for key in repo_dict:
         theme = repo_dict[key]
 
-        if key in installed_dict:
+        if key in installed_dict['installed']:
             continue
 
         description_arr = textwrap.wrap(theme['description'], 45)
@@ -183,7 +182,7 @@ def set(theme):
     dump_dict()
     generate()
 
-    print(colorprint(f"Successfully enabled theme '{theme}'", "green"))
+    print(colorprint(f"Successfully enabled theme '{theme}' - restart ZSH to check it out!", "green"))
 
 def remove(theme):
     global repo_dict 
