@@ -22,6 +22,7 @@ boiler_zconf_main = """
 source {0}/path.zsh
 source {0}/alias.zsh
 source {0}/plugin.zsh
+source {0}/theme.zsh
 
 """.format(globals.zconf_home)
 
