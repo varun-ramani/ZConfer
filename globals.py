@@ -21,4 +21,4 @@ class modules:
     path = zconf_home + "/path.zsh"
     aliases = zconf_home + "/alias.zsh"
     plugins = zconf_home + "/plugin.zsh"
-    themes = zconf_home = "/themes.zsh"
+    themes = zconf_home + "/theme.zsh"

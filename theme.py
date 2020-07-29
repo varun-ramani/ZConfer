@@ -31,7 +31,7 @@ def generate():
     selected_theme_name = installed_dict['enabled']
     selected_theme_entry = installed_dict['installed'][selected_theme_name]['entry']
 
-    write_file(globals.modules.plugins, f"source {globals.themes_dir}/{selected_theme_name}/{selected_theme_entry}")
+    write_file(globals.modules.themes, f"source {globals.themes_dir}/{selected_theme_name}/{selected_theme_entry}")
 
 def update_repo():
     import urllib.request as req
@@ -87,9 +87,9 @@ def view_local():
 
 
     for key in installed_dict:
-        plugin = installed_dict[key]
+        theme = installed_dict[key]
 
-        enabled_text = "YES" if plugin['enabled'] == True else "NO"
+        enabled_text = "YES" if theme['enabled'] == True else "NO"
 
         description_arr = textwrap.wrap(repo_dict[key]['description'], 45)
 
@@ -114,12 +114,12 @@ def view_remote():
     list_text.append(colorprint("{:20}{:50}".format("Theme", "Description"), "bold"))
 
     for key in repo_dict:
-        plugin = repo_dict[key]
+        theme = repo_dict[key]
 
         if key in installed_dict:
             continue
 
-        description_arr = textwrap.wrap(plugin['description'], 45)
+        description_arr = textwrap.wrap(theme['description'], 45)
 
         list_text.append("{:20}{:50}".format(key, description_arr[0]))
 
@@ -129,7 +129,7 @@ def view_remote():
         list_text.append("\n")
 
     if len(list_text) == 1:
-        print(colorprint("You have already installed all available plugins.\n", "red"))
+        print(colorprint("You have already installed all available themes.\n", "red"))
         return 
 
     print("\n".join(list_text))
@@ -140,22 +140,22 @@ def add(theme):
 
     init_dict()
 
-    if theme in installed_dict:
+    if theme in installed_dict['installed']:
         print(colorprint(f"Theme '{theme}' has already been added.", "red"))
-        return
+        return False
 
     if theme not in repo_dict:
-        print(colorprint(f"Theme '{theme}' was not found.", "red"))
-        return
+        print(colorprint(f"Theme '{theme}' is not available for installation.", "red"))
+        return False
 
     if os.system(f"zsh {globals.repo_dir}/themes/{theme}/add.zsh") != 0:
         print(colorprint(f"Failed to add theme '{theme}'.", "red"))
-        return
+        return False
 
     print(colorprint(f"Successfully added theme '{theme}'!", "green"))
 
-    installed_dict[theme] = {
-        "entry": repo_dict['themes'][theme]['entry']
+    installed_dict['installed'][theme] = {
+        "entry": repo_dict[theme]['entry']
     }
 
     dump_dict()
@@ -167,59 +167,63 @@ def set(theme):
 
     init_dict()
 
-    if theme not in installed_dicts:
+    if theme not in installed_dict['installed']:
         print(colorprint(f"Theme '{theme}' not present, attempting to add it.", "yellow"))
-        add(theme)
+        if not add(theme):
+            return False
 
-    if plugin not in repo_dict:
-        print(colorprint(f"Plugin '{plugin}' was not found!", "red"))
+    if installed_dict['enabled'] == theme:
+        print(colorprint(f"'{theme}' is already the selected theme!", "red"))
         return
+
+    installed_dict['enabled'] = theme
 
     dump_dict()
     generate()
 
-    print(colorprint(f"Successfully installed plugin '{plugin}'", "green"))
+    print(colorprint(f"Successfully enabled theme '{theme}'", "green"))
 
-def remove(plugin):
+def remove(theme):
     global repo_dict 
     global installed_dict
 
     init_dict()
 
-    if plugin not in installed_dict:
-        print(colorprint(f"Plugin '{plugin}' is not installed!", "red"))
+    if theme not in installed_dict['installed']:
+        print(colorprint(f"Theme '{theme}' is not installed!", "red"))
         return
 
-    if os.system(f"zsh {globals.repo_dir}/plugins/{plugin}/remove.zsh") != 0:
-        print(colorprint(f"Removal of plugin '{plugin}' was unsuccessful.", "red"))
+    if os.system(f"zsh {globals.repo_dir}/themes/{theme}/remove.zsh") != 0:
+        print(colorprint(f"Removal of theme '{theme}' was unsuccessful.", "red"))
 
-    del installed_dict[plugin]
+    del installed_dict['installed'][theme]
+    installed_dict['enabled'] = "notatheme"
 
     dump_dict()
     generate()
 
-    print(colorprint(f"Successfully removed plugin '{plugin}'", "green"))
+    print(colorprint(f"Successfully removed theme '{theme}'", "green"))
 
-def enable(plugin):
+def enable(theme):
     global installed_dict 
     init_dict()
 
-    if plugin not in installed_dict:
-        print(colorprint(f"Plugin {plugin} is not installed!"))
+    if theme not in installed_dict:
+        print(colorprint(f"Theme {theme} is not installed!"))
 
-    installed_dict[plugin]['enabled'] = True
+    installed_dict[theme]['enabled'] = True
 
     dump_dict()
     generate()
 
-def disable(plugin):
+def disable(theme):
     global installed_dict
     init_dict()
 
-    if plugin not in installed_dict:
-        print(colorprint(f"Plugin {plugin} is not installed!"))
+    if theme not in installed_dict:
+        print(colorprint(f"Theme {theme} is not installed!"))
 
-    installed_dict[plugin]['enabled'] = False
+    installed_dict[theme]['enabled'] = False
 
     dump_dict()
     generate()

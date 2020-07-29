@@ -113,9 +113,9 @@ def cli_main():
                 else:
                     err_invalid_command("theme view " + sys.argv[3])
             elif sys.argv[2] == "set":
-                plugin.set(sys.argv[3])
+                theme.set(sys.argv[3])
             elif sys.argv[2] == "rm":
-                plugin.remove(sys.argv[3])
+                theme.remove(sys.argv[3])
             else:
                 err_invalid_command("theme " + sys.argv[2])
 
