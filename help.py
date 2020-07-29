@@ -9,12 +9,17 @@ Commands Available:
 \thelp\t\tPrints this overview or a command's manpage
 \tinit\t\tPost-installation step; initializes ZConf for first use
 \tpath\t\tProvides path management functionality
-\tplugin\t\tProvides plugin management functionality
 \talias\t\tProvides alias management functionality
+\tplugin\t\tProvides plugin management functionality
+\ttheme\t\tProvides theme management functionality
     """
     print(overview_string)
 
 def command(cmd):
+    print(colorprint("Command-specific manpages have been disabled for the time being. Please consult the wiki available on GitHub.", "red"))
+    return
+
+    # TODO: Refactor this abomination using dictionaries instead of long strings.
     manpages = {
         "help": """
 usage: zconf help OR zconf help <command>
@@ -47,6 +52,22 @@ Provides comprehensive path management functionality in ZConfer.
 
 {header}
 \t\tview\t\t\t\tDisplays all the ZConfer-managed aliases and their statuses
+\t\tset\t<alias> <value>\tSets an alias to a specified value
+\t\tget\t<alias>\t\tGets the specified alias's value
+\t\trm\t<alias>\t\tRemoves a specified alias
+\t\tenable\t<alias>\t\tEnables the specified alias
+\t\tdisable\t<segment>\t\tDisables the specified alias
+        """,
+        "plugin": """
+usage: zconf plugin <subcommand> [<args>]
+
+Provides plugin management functionality in ZConfer.
+
+{header}
+\t\tview\t{{all, local, remote}} \tLists plugins
+\t\tall\t\tLists all plugins in the repository, whether they are installed or not.
+\t\t  view local\t\tLists installed plugins
+\t\t  view remote\t\tLists plugins that are not installed.
 \t\tset\t<alias> <value>\tSets an alias to a specified value
 \t\tget\t<alias>\t\tGets the specified alias's value
 \t\trm\t<alias>\t\tRemoves a specified alias
