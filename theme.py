@@ -161,6 +161,8 @@ def add(theme):
     dump_dict()
     generate()
 
+    return True
+
 def set(theme):
     global repo_dict 
     global installed_dict
