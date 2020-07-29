@@ -6,6 +6,7 @@ import json
 import path
 import alias
 import plugin
+import theme
 
 boiler_zshrc = """
 # Load zconf 
@@ -83,6 +84,18 @@ def initialize():
         globals.jsondata.plugins,
         json.dumps({})
     )
+    print(f"\tCreating {globals.jsondata.themes}")
+    write_file(
+        globals.jsondata.themes,
+        json.dumps({
+            "installed": {
+                "notatheme": {
+                    "entry": "notatheme.zsh-theme"
+                }
+            },
+            "enabled": "notatheme"
+        })
+    )
 
     print("Module files:")
     print("\tGenerating {} from {}".format(globals.modules.path, globals.jsondata.path))
@@ -91,11 +104,25 @@ def initialize():
     alias.generate()
     print("\tGenerating {} from {}".format(globals.modules.plugins, globals.jsondata.plugins))
     plugin.generate()
+    print("\tGenerating {} from {}".format(globals.modules.themes, globals.jsondata.themes))
+    theme.generate()
 
     if os.path.exists(globals.plugins_dir):
         print("Erasing plugins directory")
         shutil.rmtree(globals.plugins_dir)
 
     os.mkdir(globals.plugins_dir)
+
+    if os.path.exists(globals.themes_dir):
+        print("Erasing themes directory")
+        shutil.rmtree(globals.themes_dir)
+
+    os.mkdir(globals.themes_dir)
+
+    print("Installing default theme")
+    os.mkdir(globals.themes_dir + "/notatheme")
+
+    with open(globals.themes_dir + "/notatheme/notatheme.zsh-theme", "w+") as file:
+        file.write("# This is not a theme at all!")
 
     print(colorprint("ZConfer has been fully installed. Restart ZSH to get started!", "green"))
