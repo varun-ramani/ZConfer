@@ -9,6 +9,7 @@ import path
 import alias
 import argparse
 import plugin
+import theme
 
 os.environ['ZCONFER_PLUGINS_DIR'] = globals.plugins_dir
 
@@ -99,6 +100,24 @@ def cli_main():
                 plugin.disable(sys.argv[3])
             else:
                 err_invalid_command("plugin " + sys.argv[2])
+
+        elif sys.argv[1] == "theme":
+            if sys.argv[2] == "view":
+                if sys.argv[3] == "all":
+                    theme.view_all()
+                elif sys.argv[3] == "local":
+                    theme.view_local()
+                elif sys.argv[3] == "remote":
+                    theme.view_remote()
+                else:
+                    err_invalid_command("theme view " + sys.argv[3])
+            elif sys.argv[2] == "set":
+                plugin.set(sys.argv[3])
+            elif sys.argv[2] == "rm":
+                plugin.remove(sys.argv[3])
+            else:
+                err_invalid_command("theme " + sys.argv[2])
+
         else:
             err_invalid_command(sys.argv[1])
     
