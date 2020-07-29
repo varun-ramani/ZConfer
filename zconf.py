@@ -12,6 +12,7 @@ import plugin
 import theme
 
 os.environ['ZCONFER_PLUGINS_DIR'] = globals.plugins_dir
+os.environ['ZCONFER_THEMES_DIR'] = globals.themes_dir
 
 def err_invalid_command(command):
     print(colorprint("Command '{}' is either invalid or is being used incorrectly.".format(command), "red"))
