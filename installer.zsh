@@ -32,7 +32,7 @@ for module in $mods; do
     curl "https://raw.githubusercontent.com/varun-ramani/zconfer/master/${module}.py" -# > $HOME/.zconf/${module}.py
 done
 
-echo "Cloning ZConfer's plugin repository"
+echo "Cloning ZConfer's repository"
 git clone https://github.com/varun-ramani/zconfer_repo.git ~/.zconf/repo
 
 echo "Making $HOME/bin directory if it doesn't already exist"
