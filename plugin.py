@@ -30,7 +30,7 @@ def generate():
     plugins_string = ""
     for plugin in installed_dict:
         if installed_dict[plugin]['enabled']:
-            plugins_string = plugins_string + f"source {globals.plugins_dir}/{plugin}/{installed_dict[plugin]['entry']}"
+            plugins_string = plugins_string + f"source {globals.plugins_dir}/{plugin}/{installed_dict[plugin]['entry']}\n"
 
     write_file(globals.modules.plugins, plugins_string)
 
