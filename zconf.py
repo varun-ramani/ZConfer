@@ -126,6 +126,8 @@ def cli_main():
         if sys.argv[1] == "path":
             if sys.argv[2] == "set":
                 path.set_segment(sys.argv[3], sys.argv[4])
+            else:
+                err_invalid_command("path " + sys.argv[1])
         elif sys.argv[1] == "alias":
             if sys.argv[2] == "set":
                 alias.set(sys.argv[3], sys.argv[4])
