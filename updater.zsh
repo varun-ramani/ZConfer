@@ -1,6 +1,6 @@
 echo "\033[1;32mUpdating ZConfer\033[0m"
 
-mods=('zconf' 'help' 'init' 'globals' 'utils' 'path' 'alias' 'plugin' 'theme')
+mods=('zconf' 'help' 'init' 'globals' 'utils' 'path' 'alias' 'plugin' 'theme' 'update')
 for module in $mods; do
     echo "Downloading ${module} component"
     curl "https://raw.githubusercontent.com/varun-ramani/zconfer/master/${module}.py" -# > $HOME/.zconf/${module}.py
