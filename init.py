@@ -19,6 +19,8 @@ source {}
 boiler_zconf_main = """
 
 # ==> DON'T EDIT THIS FILE BY HAND <==
+setopt prompt_subst
+
 source {0}/path.zsh
 source {0}/alias.zsh
 source {0}/plugin.zsh
