@@ -37,7 +37,9 @@ Managing your ZSH configuration can be tedious, thankless toil. Solutions like O
 
 ### Installation
 First, install ZConfer by piping the installer to a new ZSH session:
-`curl https://raw.githubusercontent.com/varun-ramani/zconfer/master/installer.zsh | zsh`.
+```
+curl https://raw.githubusercontent.com/varun-ramani/zconfer/master/installer.zsh | zsh
+```
 Then run the init step.
 
 ### The Init Step

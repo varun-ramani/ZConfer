@@ -7,7 +7,7 @@ for module in $mods; do
 done
 
 echo "Checking for ZConfer repository update"
-cd $HOME/.zconf/repo && git pull && echo "Successfully updated!" || echo "No update found."
+cd $HOME/.zconf/repo && git pull > /dev/null && echo "Successfully updated!" || echo "No update found."
 
 rm -rf $HOME/bin/zconf
 ln -s $HOME/.zconf/zconf.py $HOME/bin/zconf
@@ -18,5 +18,3 @@ echo "#!$(command -v python3)" > $HOME/bin/this_is_a_temp_zconf_file && cat $HOM
 chmod +x $HOME/bin/zconf
 
 export PATH="$PATH:$HOME/bin"
-
-echo "\033[1;32mInstallation complete. Run zconf init now.\033[0m"
