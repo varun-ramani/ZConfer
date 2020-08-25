@@ -26,7 +26,7 @@ echo
 echo "Creating $HOME/.zconf/ if it doesn't already exist"
 mkdir -p $HOME/.zconf
 
-mods=('zconf' 'help' 'init' 'globals' 'utils' 'path' 'alias' 'plugin' 'theme')
+mods=('zconf' 'help' 'init' 'globals' 'utils' 'path' 'alias' 'plugin' 'theme' 'update')
 for module in $mods; do
     echo "Downloading ${module} component"
     curl "https://raw.githubusercontent.com/varun-ramani/zconfer/master/${module}.py" -# > $HOME/.zconf/${module}.py
