@@ -17,6 +17,7 @@ Managing your ZSH configuration can be tedious, thankless toil. Solutions like O
   * [Installation](#installation)
   * [The Init Step](#the-init-step)
 * [Usage](#usage)
+  * [Updating ZConfer](#updating-zconfer)
   * [The Plugin System](#the-plugin-system)
 	* [Browsing and Listing Plugins](#browsing-and-listing-plugins)
 	* [Adding and Removing Plugins](#adding-and-removing-plugins)
@@ -46,6 +47,11 @@ Then run the init step.
 Run `$HOME/bin/zconf init` and respond to any prompts. Pretty simple, really.
 
 ## Usage
+### Updating ZConfer
+In its current state, this module just wraps a shell command that runs the updater script on this repository.
+```
+zconf update
+```
 
 ### The Plugin System
 Through ZConfer's plugin system, you can download new plugins, remove existing ones, and select which to load on startup. You can also view both locally installed and remotely available plugins.
