@@ -10,6 +10,7 @@ import alias
 import argparse
 import plugin
 import theme
+import update
 
 os.environ['ZCONFER_PLUGINS_DIR'] = globals.plugins_dir
 os.environ['ZCONFER_THEMES_DIR'] = globals.themes_dir
@@ -28,6 +29,8 @@ def cli_main():
     if len(sys.argv) == 2:
         if sys.argv[1] == "help":
             help.overview()
+        elif sys.argv[1] == "update":
+            update.update()
         elif sys.argv[1] == "init":
             init.initialize()
         else:

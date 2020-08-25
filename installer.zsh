@@ -1,4 +1,4 @@
-echo "\033[1;32mZConf Installer\033[0m"
+echo "\033[1;32mZConfer Installer\033[0m"
 echo "\033[1;32m---------------\033[0m"
 
 found_error=false
@@ -17,7 +17,7 @@ if [[ $found_error == true ]]; then
     exit
 fi
 
-printf "\033[1;33mAll requirements met. Install ZConf? (y/n) \033[0m"
+printf "\033[1;33mAll requirements met. Install ZConfer? (y/n) \033[0m"
 if ! read -q; then
     exit
 fi
@@ -38,10 +38,10 @@ git clone https://github.com/varun-ramani/zconfer_repo.git ~/.zconf/repo
 echo "Making $HOME/bin directory if it doesn't already exist"
 mkdir -p $HOME/bin
 
-echo "Linking zconf into $HOME/bin/zconf"
+echo "Linking ZConfer into $HOME/bin/zconf"
 ln -s $HOME/.zconf/zconf.py $HOME/bin/zconf
 
-echo "Patching zconf for system installation of Python 3"
+echo "Patching ZConfer for system installation of Python 3"
 echo "#!$(command -v python3)" > $HOME/bin/this_is_a_temp_zconf_file && cat $HOME/bin/zconf >> $HOME/bin/this_is_a_temp_zconf_file && cat $HOME/bin/this_is_a_temp_zconf_file > $HOME/bin/zconf && rm $HOME/bin/this_is_a_temp_zconf_file
 
 chmod +x $HOME/bin/zconf
