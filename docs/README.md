@@ -70,55 +70,42 @@ zconf update
 Through ZConfer's plugin system, you can download new plugins, remove existing ones, and select which to load on startup. You can also view both locally installed and remotely available plugins.
 
 #### Browsing and Listing Plugins
-* To browse plugins that are not installed but available in the repository:
+* Browse plugins that are not installed with `view remote`.
   ```
   zconf plugin view remote
   ```
 
-
-* To browse locally installed plugins:
+* Browse installed plugins with `view local`.
   ```
   zconf plugin view local
   ```
 
-* To browse all plugins:
+* You can also `view all` plugins.
   ```
   zconf plugin view all
   ```
 
 #### Adding and Removing Plugins
-* To install a new plugin:
-  ```
-  zconf plugin add <plugin>
-  ```
+* ZConfer can easily `add` new plugins.
   Example: 
   ```
   zconf plugin add z
   ```
   
-* To uninstall a plugin:
-  ```
-  zconf plugin rm <plugin>
-  ```
+* To delete plugins, use `rm`.
   Example:
   ```
   zconf plugin rm z
   ```
 
 #### Enabling and Disabling Plugins:
-* To make a plugin load when you start ZSH:
-  ```
-  zconf plugin enable <plugin>
-  ```
+* Use `enable` to make a plugin load when you start ZSH.
   Example:
   ```
   zconf plugin enable z
   ```
   
-* To prevent a plugin from loading when you start ZSH:
-  ```
-  zconf plugin disable <plugin>
-  ```
+* Plugins won't load if you `disable` them.
   Example:
   ```
   zconf plugin disable z
@@ -145,18 +132,12 @@ Through ZConfer's plugin system, you can download new plugins, remove existing o
 
 #### Adding and Removing Themes
 Themes are automatically added when they are set for the first time. You don't ever *need* to add them manually.
-* Manually `add`ing a theme:
-  ```
-  zconf theme add <theme>
-  ```
+* However, you can `add` themes manually if you want.
   Example: 
   ```
   zconf theme add dracula
   ```
 * To remove a theme, use `rm`.
-  ```
-  zconf theme rm <theme>
-  ```
   Example:
   ```
   zconf theme rm dracula
@@ -200,23 +181,22 @@ ZConfer will handle the task of concatenating all the segments with the existing
   ```
   
 * Using `rm` deletes a segment.
-  ```
-  zconf path rm <segment>
-  ```
-  Example:
+    Example:
   ```
   zconf path rm android_tools
   ```
   
 #### Enabling and Disabling PATH Segments
 * If you might need a segment later, then `disable` it.
+  Example:
   ```
-  zconf path disable <segment>
+  zconf path disable android_tools
   ```
   
 * Recover disabled segments with `enable`.
+  Example:
   ```
-  zconf path enable <segment>
+  zconf path enable android_tools
   ```
 
 ### Alias Management
@@ -237,15 +217,16 @@ ZConfer will handle the task of concatenating all the segments with the existing
   ```
 
 * To delete aliases, use `rm`.
+  Example:
   ```
-  zconf alias rm <alias>
+  zconf alias rm ls
   ```
-
   
 #### Enabling and Disabling Aliases
 * The `disable` command is like `rm`, but it's reversible.
+  Example:
   ```
-  zconf alias disable <alias>
+  zconf alias disable ls
   ```
 
 * Use `enable` to undo the disable operation.
