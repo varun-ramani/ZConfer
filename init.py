@@ -56,7 +56,7 @@ def initialize():
         json.dumps({
             "BIN": {
                 "value": "{}/bin".format(globals.home),
-                "loaded": True
+                "enabled": True
             }
         }, indent=4)
     )

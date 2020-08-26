@@ -34,7 +34,7 @@ def generate():
 
     pathstring = "export PATH=$PATH:"
     for seg in pathdict:
-        if pathdict[seg]['loaded']:
+        if pathdict[seg]['enabled']:
             pathstring = pathstring + pathdict[seg]['value'] + ":"
 
     write_file(globals.modules.path, pathstring[:-1])
@@ -44,7 +44,7 @@ def set_segment(seg, value):
     init_pathdict()
 
     seg = seg.upper()
-    pathdict.setdefault(seg, {'value': "", 'loaded': True})
+    pathdict.setdefault(seg, {'value': "", 'enabled': True})
     pathdict[seg]['value'] = value
 
     dump_pathdict()
@@ -75,7 +75,7 @@ def remove_segment(seg):
     dump_pathdict()
     generate()
 
-def load_segment(seg):
+def enable_segment(seg):
     global pathdict
     init_pathdict()
 
@@ -84,12 +84,12 @@ def load_segment(seg):
     if not check_segment_exists(seg):
         return
 
-    pathdict[seg]['loaded'] = True
+    pathdict[seg]['enabled'] = True
 
     dump_pathdict()
     generate()
 
-def unload_segment(seg):
+def disable_segment(seg):
     global pathdict
     init_pathdict()
 
@@ -98,7 +98,7 @@ def unload_segment(seg):
     if not check_segment_exists(seg):
         return
 
-    pathdict[seg]['loaded'] = False
+    pathdict[seg]['enabled'] = False
     dump_pathdict()
     generate()
 
@@ -110,7 +110,7 @@ def view():
         print(colorprint("No ZConf-created segments in PATH", "red"))
         return
 
-    print(colorprint("\t{:20}{:60}{:15}".format("Segment", "Value", "Loaded"), "bold"))
+    print(colorprint("{:20}{:60}{:15}".format("Segment", "Value", "Enabled"), "bold"))
     for seg in pathdict:
-        print("{:20}{:60}{:15}".format(seg, pathdict.get(seg)['value'], ("YES" if pathdict[seg]['loaded'] else "NO")))
+        print("{:20}{:60}{:15}".format(seg, pathdict.get(seg)['value'], ("YES" if pathdict[seg]['enabled'] else "NO")))
     print()

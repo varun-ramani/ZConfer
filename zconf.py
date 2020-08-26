@@ -63,10 +63,10 @@ def cli_main():
         if sys.argv[1] == "path":
             if sys.argv[2] == "rm":
                 path.remove_segment(sys.argv[3])
-            elif sys.argv[2] == "load":
-                path.load_segment(sys.argv[3])
-            elif sys.argv[2] == "unload":
-                path.unload_segment(sys.argv[3])
+            elif sys.argv[2] == "enable":
+                path.enable_segment(sys.argv[3])
+            elif sys.argv[2] == "disable":
+                path.disable_segment(sys.argv[3])
             elif sys.argv[2] == "get":
                 path.get_segment(sys.argv[3])
             else:
@@ -119,6 +119,8 @@ def cli_main():
                 theme.set(sys.argv[3])
             elif sys.argv[2] == "rm":
                 theme.remove(sys.argv[3])
+            elif sys.argv[2] == "add":
+                theme.add(sys.argv[3])
             else:
                 err_invalid_command("theme " + sys.argv[2])
 
