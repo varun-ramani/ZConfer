@@ -33,14 +33,6 @@ def generate():
 
     write_file(globals.modules.themes, f"source {globals.themes_dir}/{selected_theme_name}/{selected_theme_entry}")
 
-def update_repo():
-    import urllib.request as req
-    os.system(f'cd {globals.repo_dir} && git pull')
-    print(colorprint("Updated local repository!", "green"))
-
-def update():
-    update_repo()
-
 def view_all():
     global repo_dict
     global installed_dict
