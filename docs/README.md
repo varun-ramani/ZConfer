@@ -26,6 +26,10 @@ Managing your ZSH configuration can be tedious, thankless toil. Solutions like O
 	* [Browsing and Listing Themes](#browsing-and-listing-themes)
 	* [Adding and Removing Themes](#adding-and-removing-themes)
 	* [Setting Themes](#setting-themes)
+  * [PATH Management](#path-management)
+	* [Viewing PATH Segments](#viewing-path-segments)
+	* [Creating, Updating, and Deleting PATH Segments](#creating-updating-and-deleting-path-segments)
+	* [Enabling and Disabling PATH Segments](#enabling-and-disabling-path-segments)
 		
 
 ## Demo
@@ -172,7 +176,7 @@ Themes are automatically added when they are set for the first time. You don't n
   ```
   
 
-### Path Management
+### PATH Management
 You can use ZConfer to create, update, and delete individual PATH segments. If you would prefer not to delete a segment entirely, you can also enable/disable it. 
 ZConfer will handle the task of concatenating all the segments with the existing PATH variable in order to create a meaningful PATH string.
 **Note that at the moment, ZConfer can only manage the PATH segments that it created.**
