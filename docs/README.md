@@ -145,9 +145,6 @@ Themes are automatically added when they are set for the first time. You don't e
   
 #### Setting Themes
 * It's easy to `set` themes.
-  ```
-  zconf theme set <theme>
-  ```
   Example:
   ```
   zconf theme set dracula
