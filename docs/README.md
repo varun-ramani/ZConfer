@@ -3,7 +3,7 @@
 ## Introduction
 **Hey look! It's a package manager for ZSH! (And it can do a ton of other stuff too!)**
 
-Managing your ZSH configuration can be tedious, thankless toil. Solutions like Oh My Zsh address this problem admirably, but *you still have to spend time messsing around with configuration files!* ZConfer abstracts away the task of configuration behind an easily usable command line interface, so you can get back to focusing on what actually matters.
+Managing your ZSH configuration can be tedious, thankless toil. Solutions like Oh My Zsh address this problem admirably, but *you still have to spend time messing around with configuration files!* ZConfer abstracts away the task of configuration behind an easily usable command line interface, so you can get back to focusing on what actually matters.
 
 * ZConfer is a comprehensive plugin manager capable of adding, deleting, enabling, and disabling plugins.
 * ZConfer can download new themes and enable them.
