@@ -7,7 +7,7 @@ for module in $mods; do
 done
 
 echo "Checking for ZConfer repository update"
-cd $HOME/.zconf/repo && git pull > /dev/null && echo "Successfully updated!" || echo "No update found."
+cd $HOME/.zconf/repo && git pull
 
 rm -rf $HOME/bin/zconf
 ln -s $HOME/.zconf/zconf.py $HOME/bin/zconf
