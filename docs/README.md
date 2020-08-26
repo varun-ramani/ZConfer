@@ -30,6 +30,10 @@ Managing your ZSH configuration can be tedious, thankless toil. Solutions like O
 	* [Viewing PATH Segments](#viewing-path-segments)
 	* [Creating, Updating, and Deleting PATH Segments](#creating-updating-and-deleting-path-segments)
 	* [Enabling and Disabling PATH Segments](#enabling-and-disabling-path-segments)
+  * [Alias Management](#alias-management)
+	* [Viewing Aliases](#viewing-aliases)
+	* [Creaing, Updating, and Deleting Aliases](#creating-updating-and-deleting-aliases)
+	* [Enabling and Disabling Aliases](#enabling-and-disabling-aliases)
 		
 
 ## Demo
@@ -123,25 +127,25 @@ Through ZConfer's plugin system, you can download new plugins, remove existing o
 
 ### The Theme System
 #### Browsing and Listing Themes
-* To browse themes that are not installed but available in the repository:
+* Browse themes that aren't installed with `view remote`.
   ```
   zconf theme view remote
   ```
 
 
-* To browse locally installed themes:
+* Browse installed themes with `view local`.
   ```
   zconf theme view local
   ```
 
-* To browse all themes:
+* To browse all themes, use `view all`.
   ```
   zconf theme view all
   ```
 
 #### Adding and Removing Themes
 Themes are automatically added when they are set for the first time. You don't ever *need* to add them manually.
-* To manually add a theme:
+* Manually `add`ing a theme:
   ```
   zconf theme add <theme>
   ```
@@ -149,7 +153,7 @@ Themes are automatically added when they are set for the first time. You don't e
   ```
   zconf theme add dracula
   ```
-* To remove a theme:
+* To remove a theme, use `rm`.
   ```
   zconf theme rm <theme>
   ```
@@ -159,9 +163,7 @@ Themes are automatically added when they are set for the first time. You don't e
   ```
   
 #### Setting Themes
-Themes are automatically added when they are set for the first time. You don't need to ever add them manually.
-
-* Setting a new theme
+* It's easy to `set` themes.
   ```
   zconf theme set <theme>
   ```
@@ -170,7 +172,7 @@ Themes are automatically added when they are set for the first time. You don't n
   zconf theme set dracula
   ```
   
-* Reverting back to no theme
+* You can also revert to no theme:
   ```
   zconf theme set notatheme
   ```
@@ -182,13 +184,13 @@ ZConfer will handle the task of concatenating all the segments with the existing
 **Note that at the moment, ZConfer can only manage the PATH segments that it created.**
 
 #### Viewing PATH Segments
-To print out all the registered PATH segments and their values:
-```
-zconf path view
-```
+* You can `view` all registered PATH segments and their values.
+  ```
+  zconf path view
+  ```
 
 #### Creating, Updating, and Deleting PATH Segments
-* To add a new segment to PATH:
+* The `set` command can both add and update PATH segments.
   ```
   zconf path set <segment> <value>
   ```
@@ -196,10 +198,8 @@ zconf path view
   ```
   zconf path set android_tools /Users/varun/Android/Sdk/platform_tools
   ```
-* To update an existing segment in PATH:
-  Ignore the fact that it exists, and set it like it was a new segment.
-
-* To delete a PATH segment (gets rid of it entirely):
+  
+* Using `rm` deletes a segment.
   ```
   zconf path rm <segment>
   ```
@@ -209,13 +209,47 @@ zconf path view
   ```
   
 #### Enabling and Disabling PATH Segments
-You can make ZConfer "ignore" a specific PATH segment by disabling it. Although the segment will remain in ZConfer's registry, it will be removed from PATH.
-This is useful when you want to temporarily remove a PATH segment and plan to add it back later. Segments are enabled by default.
-* To disable a segment:
+* If you might need a segment later, then `disable` it.
   ```
   zconf path disable <segment>
   ```
-* To enable a disabled segment:
+  
+* Recover disabled segments with `enable`.
   ```
   zconf path enable <segment>
+  ```
+
+### Alias Management
+#### Viewing Aliases
+* The `view` command lists your aliases for you.
+  ```
+  zconf alias view
+  ```
+  
+#### Creating, Updating, and Deleting Aliases
+* You can use `set` to create and update aliases.
+  ```
+  zconf alias set <alias> '<value>'
+  ```
+  Example:
+  ```
+  zconf alias set ls 'ls -G'
+  ```
+
+* To delete aliases, use `rm`.
+  ```
+  zconf alias rm <alias>
+  ```
+
+  
+#### Enabling and Disabling Aliases
+* The `disable` command is like `rm`, but it's reversible.
+  ```
+  zconf alias disable <alias>
+  ```
+
+* Use `enable` to undo the disable operation.
+  Example:
+  ```
+  zconf alias enable ls
   ```
