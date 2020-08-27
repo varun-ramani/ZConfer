@@ -174,7 +174,7 @@ def set(theme):
     dump_dict()
     generate()
 
-    print(colorprint(f"Successfully enabled theme '{theme}' - restart ZSH to check it out!", "green"))
+    print(colorprint(f"Successfully enabled theme '{theme}'", "green"))
 
 def remove(theme):
     global repo_dict 
