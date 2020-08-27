@@ -38,12 +38,9 @@ git clone https://github.com/varun-ramani/zconfer_repo.git ~/.zconf/repo
 echo "Making $HOME/bin directory if it doesn't already exist"
 mkdir -p $HOME/bin
 
-echo "Linking ZConfer into $HOME/bin/zconf"
-ln -s $HOME/.zconf/zconf.py $HOME/bin/zconf
-
-echo "Patching ZConfer for system installation of Python 3"
-echo "#!$(command -v python3)" > $HOME/bin/this_is_a_temp_zconf_file && cat $HOME/bin/zconf >> $HOME/bin/this_is_a_temp_zconf_file && cat $HOME/bin/this_is_a_temp_zconf_file > $HOME/bin/zconf && rm $HOME/bin/this_is_a_temp_zconf_file
-
+echo "Creating launcher"
+echo 'python3 $HOME/.zconf/zconf.py $@' >> $HOME/bin/zconf
+echo 'exec zsh' >> $HOME/bin/zconf
 chmod +x $HOME/bin/zconf
 
 export PATH="$PATH:$HOME/bin"
