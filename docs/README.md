@@ -166,6 +166,10 @@ ZConfer will handle the task of concatenating all the segments with the existing
   ```
   zconf path view
   ```
+* You can also `get` the value of a specific segment.
+  ```
+  zconf path get bin
+  ```
 
 #### Creating, Updating, and Deleting PATH Segments
 * The `set` command can both add and update PATH segments.
@@ -201,6 +205,10 @@ ZConfer will handle the task of concatenating all the segments with the existing
 * The `view` command lists your aliases for you.
   ```
   zconf alias view
+  ```
+* Similar to the path command, you can `get` the value of a specific alias.
+  ```
+  zconf alias get ls
   ```
   
 #### Creating, Updating, and Deleting Aliases
