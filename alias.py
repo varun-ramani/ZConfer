@@ -49,7 +49,7 @@ def set(alias, value):
     dump_aliasdict()
     generate()
 
-    print(colorprint(f"Successfully aliased {alias} to '{value'}!", "green"))
+    print(colorprint(f"Successfully aliased {alias} to '{value}'!", "green"))
 
 def get(alias):
     global aliasdict
