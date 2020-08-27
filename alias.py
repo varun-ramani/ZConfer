@@ -49,6 +49,8 @@ def set(alias, value):
     dump_aliasdict()
     generate()
 
+    print(colorprint(f"Successfully aliased {alias} to '{value'}!", "green"))
+
 def get(alias):
     global aliasdict
     init_aliasdict()
@@ -70,6 +72,8 @@ def remove(alias):
     dump_aliasdict()
     generate()
 
+    print(colorprint(f"Removed alias {alias}", "green"))
+
 def enable(alias):
     global aliasdict
     init_aliasdict()
@@ -82,6 +86,8 @@ def enable(alias):
     dump_aliasdict()
     generate()
 
+    print(colorprint(f"Alias {alias} is now enabled."))
+
 def disable(alias):
     global aliasdict
     init_aliasdict()
@@ -92,6 +98,8 @@ def disable(alias):
     aliasdict[alias]['enabled'] = False
     dump_aliasdict()
     generate()
+
+    print(colorprint(f"Alias {alias} is now disabled."))
 
 def view():
     global aliasdict

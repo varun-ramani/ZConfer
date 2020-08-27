@@ -151,7 +151,7 @@ def add(plugin):
     dump_dict()
     generate()
 
-    print(colorprint(f"Successfully installed plugin '{plugin}'", "green"))
+    print(colorprint(f"Successfully added plugin '{plugin}'", "green"))
 
 def remove(plugin):
     global repo_dict 
@@ -185,6 +185,8 @@ def enable(plugin):
     dump_dict()
     generate()
 
+    print(colorprint(f"Successfully enabled plugin '{plugin}'", "green"))
+
 def disable(plugin):
     global installed_dict
     init_dict()
@@ -196,3 +198,5 @@ def disable(plugin):
 
     dump_dict()
     generate()
+
+    print(colorprint(f"Successfully disabled plugin '{plugin}'", "green"))

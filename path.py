@@ -50,6 +50,8 @@ def set_segment(seg, value):
     dump_pathdict()
     generate()
 
+    print(colorprint(f"Successfully set segment {seg} to '{value}'", "green"))
+
 def get_segment(seg):
     global pathdict
     init_pathdict()
@@ -75,6 +77,8 @@ def remove_segment(seg):
     dump_pathdict()
     generate()
 
+    print(colorprint(f"Successfully removed segment {seg}", "green"))
+
 def enable_segment(seg):
     global pathdict
     init_pathdict()
@@ -89,6 +93,8 @@ def enable_segment(seg):
     dump_pathdict()
     generate()
 
+    print(colorprint(f"Successfully enabled segment {seg}", "green"))
+    
 def disable_segment(seg):
     global pathdict
     init_pathdict()
@@ -101,6 +107,8 @@ def disable_segment(seg):
     pathdict[seg]['enabled'] = False
     dump_pathdict()
     generate()
+
+    print(colorprint(f"Successfully disabled segment {seg}", "green"))
 
 def view():
     global pathdict
