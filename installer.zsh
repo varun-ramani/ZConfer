@@ -40,7 +40,7 @@ mkdir -p $HOME/bin
 
 echo "Creating launcher"
 echo 'python3 $HOME/.zconf/zconf.py $@' >> $HOME/bin/zconf
-echo 'exec zsh' >> $HOME/bin/zconf
+
 chmod +x $HOME/bin/zconf
 
 export PATH="$PATH:$HOME/bin"
